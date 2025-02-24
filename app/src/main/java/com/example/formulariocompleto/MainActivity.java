@@ -1,5 +1,6 @@
 package com.example.formulariocompleto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected TextView texto1;
     protected TimerTask tt;
     protected Timer t;
+    protected Intent pasarPantalla;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
         tt= new TimerTask() {
             @Override
             public void run() {
+                pasarPantalla = new Intent(MainActivity.this, InformacionActivity.class);
+                startActivity(pasarPantalla);
 
             }
         };
+        t= new Timer();
+        t.schedule(tt,5000);
 
 
     }
