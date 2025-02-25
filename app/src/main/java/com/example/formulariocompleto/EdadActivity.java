@@ -79,7 +79,7 @@ public class EdadActivity extends AppCompatActivity {
 
                 contenidoItem = adapterView.getItemAtPosition(i).toString();
 
-                pasarPantalla = new Intent(EdadActivity.this, InformacionActivity.class);
+                pasarPantalla = new Intent(EdadActivity.this, ResumenActivity.class);
 
                 pasarPantalla.putExtra("NOMBRE", paquete1);
                 pasarPantalla.putExtra("APELLIDOS", paquete2);
