@@ -1,6 +1,10 @@
 package com.example.formulariocompleto;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +29,11 @@ public class EdadActivity extends AppCompatActivity {
     protected String paquete3;
     protected Bundle extras;
 
-    
+    protected ArrayList<String> numeros= new ArrayList<String>();
+    protected ArrayAdapter<String> adaptador;
+    protected int i;
+    protected String contenidoItem="";
+    protected Intent pasarPantalla;
 
 
     @Override
@@ -56,5 +64,33 @@ public class EdadActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "No se han recibido paquetes", Toast.LENGTH_SHORT).show();
         }
+        i=0;
+        for (i=0; i<=130;i++)
+        {
+            numeros.add(""+i);
+            //numeros.add(Integer.toString(i));//Esta linea es hace lo mismo que la de arriba
+        }
+        adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, numeros);
+        lista1.setAdapter(adaptador);
+
+        lista1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                contenidoItem = adapterView.getItemAtPosition(i).toString();
+
+                pasarPantalla = new Intent(EdadActivity.this, InformacionActivity.class);
+
+                pasarPantalla.putExtra("NOMBRE", paquete1);
+                pasarPantalla.putExtra("APELLIDOS", paquete2);
+                pasarPantalla.putExtra("GENERO", paquete3);
+                pasarPantalla.putExtra("EDAD", contenidoItem);
+                startActivity(pasarPantalla);
+
+            }
+        });
+
+
+
     }
 }
