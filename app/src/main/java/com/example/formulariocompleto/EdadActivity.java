@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +13,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class EdadActivity extends AppCompatActivity {
 
     protected TextView texto1;
     protected TextView texto2;
     protected ListView lista1;
+    protected String paquete1;
+    protected String paquete2;
+    protected String paquete3;
+    protected Bundle extras;
+
+    
 
 
     @Override
@@ -33,5 +42,19 @@ public class EdadActivity extends AppCompatActivity {
         texto1 = (TextView) findViewById(R.id.texto1_edad);
         texto2 = (TextView) findViewById(R.id.texto2_edad);
         lista1 = (ListView) findViewById(R.id.lista1_edad);
+
+        extras = getIntent().getExtras();
+        if(extras!=null)
+        {
+            paquete1 = extras.getString("NOMBRE");
+            paquete2 = extras.getString("APELLIDOS");
+            paquete3 = extras.getString("GENERO");
+
+            Toast.makeText(this, "Los paquetes son"+paquete1+paquete2+paquete3, Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            Toast.makeText(this, "No se han recibido paquetes", Toast.LENGTH_SHORT).show();
+        }
     }
 }
